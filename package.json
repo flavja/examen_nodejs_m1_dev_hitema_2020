@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "test:watch": "jest --watch",
     "eslint": "./node_modules/.bin/eslint \"./**/*.js\"",
     "start:rest": "node ./api/index.js",
-    "start:websocket": "node ./websocket/index.js"
+    "start:websocket": "node ./websocket/index.js",
+    "test": "jest || :",
+      "posttest": "npm run eslint"
   },
   "author": "",
   "license": "ISC",

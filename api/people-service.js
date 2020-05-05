@@ -6,12 +6,9 @@ module.exports = class PeopleService {
     }
 
     updatePeople(id, people) {
-        let peopleIdx = this.peoples.indexOf(this.peoples.filter(person => person.id === id))
-        this.peoples[peopleIdx] = people;
-        fs.writeFile(__dirname + '/people.json', JSON.stringify(this.peoples), error => {
-            error ? console.log(error) : '';
-        });
-        // To be implemented!
+        const pplToUpdate = this.peoples.find((ppl) => ppl.id === parseInt(id));
+        if (!pplToUpdate) return null;
+        return Object.assign(pplToUpdate, people);
     }
 
     getPeople(filters = null) {

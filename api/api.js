@@ -11,19 +11,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api/v1', v1);
 
-v1.get('/people', async (request, response) => {
+v1.get('/people', (request, response) => {
     let filters = request.query;
-    let people = await peopleService.getPeople(filters);
+    let people = peopleService.getPeople(filters);
     response.send(people);
 });
 
 
-v1.put('/people/:id', async (request, response) => {
+v1.put('/people/:id', (request, response) => {
     let id = request.params.id;
     let body = request.body;
 
     try{
-        const result = await peopleService.updatePeople(id, body);
+        const result = peopleService.updatePeople(id, body);
         !result ? response.sendStatus(httpStatus.NOT_FOUND) : response.sendStatus(httpStatus.OK);
     }catch (e) {
         console.log('error occurs : ', e);

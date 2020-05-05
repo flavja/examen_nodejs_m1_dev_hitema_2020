@@ -2,6 +2,7 @@ const WebSocket = require('ws')
 const webSocketServer = new WebSocket.Server({ port: 3003 });
 
 let history = [];
+
 webSocketServer.on('connection', webSocket => {
     webSocket.onmessage = messageEvent => {
         const message = messageEvent.data;

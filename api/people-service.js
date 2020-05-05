@@ -11,6 +11,7 @@ module.exports = class PeopleService {
         fs.writeFile(__dirname + '/people.json', JSON.stringify(this.peoples), error => {
             error ? console.log(error) : '';
         });
+        // To be implemented!
     }
 
     getPeople(filters = null) {

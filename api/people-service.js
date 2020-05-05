@@ -6,10 +6,20 @@ module.exports = class PeopleService {
     }
 
     updatePeople(id, people) {
-        // To be implemented!
+        let peopleIdx = this.peoples.indexOf(this.peoples.filter(person => person.id === id))
+        this.peoples[peopleIdx] = people;
+        fs.writeFile(__dirname + '/people.json', JSON.stringify(this.peoples), error => {
+            error ? console.log(error) : '';
+        });
     }
-    
-    getPeople(filters) {
-        // To be implemented!
+
+    getPeople(filters = null) {
+        if (filters === null) return this.peoples;
+        const allFilterKeys = Object.keys(filters);
+        return this.getPeople().filter(ppl => {
+            return allFilterKeys.every(key => {
+                return filters[key] === ppl[key]
+            });
+        });
     }
 }
